@@ -7,31 +7,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const playerNameSelect = document.getElementById('playerName');
     const message = document.getElementById('message');
 
-    // Replace with your Google Apps Script web app URL
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzFAapcR9nGQPP5sxDG2oF40hvcezzWmtRSqDu48VoXR02I_btyfTZO9caBpvI5q3i-/exec';
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbzFAapcR9nGQPP5sxDG2oF40hvcezzWmtRSqDu48VoXR02I_btyfTZO9caBpvI5q3i-/exec';
 
-    function fetchPlayers() {
-        fetch(webAppUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({action: 'getAll'})
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                updatePlayerDropdowns(data.players);
-            } else {
-                message.textContent = 'Failed to fetch players.';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            message.textContent = 'Error fetching players.';
-        });
-    }
-
+function fetchPlayers() {
+    fetch(webAppUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ action: 'getAll' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            updatePlayerDropdowns(data.players);
+        } else {
+            message.textContent = 'Failed to fetch players.';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        message.textContent = 'Error fetching players.';
+    });
+}
     function updatePlayerDropdowns(players) {
         removePlayerSelect.innerHTML = "";
         playerNameSelect.innerHTML = "<option value=''>Select Player</option>";
@@ -46,35 +44,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetchPlayers();
 
-    addPlayerBtn.addEventListener('click', function () {
-        const newPlayerInput = document.getElementById('newPlayer');
-        const newPlayer = newPlayerInput.value.trim();
-        if (newPlayer) {
-            fetch(webAppUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({action: 'add', playerName: newPlayer})
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    fetchPlayers();
-                    newPlayerInput.value = "";
-                    message.textContent = "Player added successfully.";
-                } else {
-                    message.textContent = "Failed to add player: " + data.message;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                message.textContent = "Error adding player.";
-            });
-        } else {
-            message.textContent = "Player name cannot be empty.";
-        }
-    });
+addPlayerBtn.addEventListener('click', function () {
+    const newPlayerInput = document.getElementById('newPlayer');
+    const newPlayer = newPlayerInput.value.trim();
+    if (newPlayer) {
+        fetch(webAppUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ action: 'add', playerName: newPlayer })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                fetchPlayers();
+                newPlayerInput.value = '';
+                message.textContent = 'Player added successfully.';
+            } else {
+                message.textContent = `Failed to add player: ${data.message}`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            message.textContent = 'Error adding player.';
+        });
+    } else {
+        message.textContent = 'Player name cannot be empty.';
+    }
+});
 
     removePlayerBtn.addEventListener('click', function () {
         const removePlayer = removePlayerSelect.value;
