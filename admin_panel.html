@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/admin_panel.css">
+</head>
+<body>
+    <div id="admin-panel">
+        <header>
+            <h1>Admin Panel</h1>
+            <nav>
+                <ul>
+                    <li><a href="input_stats.html">Input Stats</a></li>
+                    <li><a href="#users">Users</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="content">
+            <section id="add-player-section">
+                <h2>Add Player</h2>
+                <form id="add-player-form">
+                    <label for="newPlayer">Player Name:</label>
+                    <input type="text" id="newPlayer" name="newPlayer" required>
+                    <button type="button" id="addPlayerBtn">Add Player</button>
+                </form>
+            </section>
+
+            <section id="remove-player-section">
+                <h2>Remove Player</h2>
+                <form id="remove-player-form">
+                    <label for="removePlayer">Select Player:</label>
+                    <select id="removePlayer" name="removePlayer" required></select>
+                    <button type="button" id="removePlayerBtn">Remove Player</button>
+                </form>
+            </section>
+
+            <section id="send-message-section">
+                <h2>Send Embedded Message to Discord</h2>
+                <form id="send-message-form">
+                    <label for="messageTitle">Message Title:</label>
+                    <input type="text" id="messageTitle" name="messageTitle" required>
+                    
+                    <label for="messageDescription">Message Description:</label>
+                    <textarea id="messageDescription" name="messageDescription" rows="4" required></textarea>
+                    
+                    <label for="messageColor">Message Color:</label>
+                    <input type="color" id="messageColor" name="messageColor" value="#0099ff">
+                    
+                    <button type="button" id="sendMessageBtn">Send Message</button>
+                </form>
+            </section>
+
+            <section id="create-formation-section">
+                <h2>Create Formation</h2>
+                <!-- Add content for Create Formation here -->
+            </section>
+
+            <section id="add-stats-section">
+                <h2>Add Player Stats</h2>
+                <form id="add-stats-form">
+                    <label for="playerName">Player Name:</label>
+                    <select id="playerName" name="playerName" required>
+                        <option value="">Select Player</option>
+                    </select>
+
+                    <!-- Add other fields here -->
+
+                    <button type="button" id="addStatsBtn">Add Stats</button>
+                </form>
+            </section>
+
+            <p id="message"></p>
+        </main>
+    </div>
+
+    <script src="scripts/admin_panel.js"></script>
+</body>
+</html>
