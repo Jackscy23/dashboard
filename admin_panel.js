@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const playerNameSelect = document.getElementById('playerName');
     const message = document.getElementById('message');
 
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbzFAapcR9nGQPP5sxDG2oF40hvcezzWmtRSqDu48VoXR02I_btyfTZO9caBpvI5q3i-/exec';
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbxfonz2-_4VyB6mKgwPt4uul-L8m19Wm8Bdu4oW41EHXKzIA4gpsYzNoCP6Zs0_Vu49/exec';
 
 function fetchPlayers() {
     fetch(webAppUrl, {
